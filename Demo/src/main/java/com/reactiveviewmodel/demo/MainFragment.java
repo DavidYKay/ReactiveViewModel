@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.reactiveviewmodel.demo.converter.CharSequenceToStringConverter;
 import com.reactiveviewmodel.demo.view.ReactiveEditText;
 import com.reactiveviewmodel.demo.view.ViewActions;
 import com.reactiveviewmodel.demo.viewmodel.MainViewModel;
@@ -29,9 +30,8 @@ public class MainFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
     ReactiveEditText queryEditText = (ReactiveEditText) view.findViewById(R.id.queryEditText);
-    final TextView queryTextView = (TextView) view.findViewById(R.id.queryTextView);
+    TextView queryTextView = (TextView) view.findViewById(R.id.queryTextView);
 
     viewSubscription.add(
         mainViewModel.query
@@ -49,12 +49,7 @@ public class MainFragment extends Fragment {
                 return s;
               }
             },
-            new Func1<CharSequence, String>() {
-              @Override
-              public String call(CharSequence charSequence) {
-                return charSequence != null ? charSequence.toString() : null;
-              }
-            })
+            new CharSequenceToStringConverter())
     );
   }
 

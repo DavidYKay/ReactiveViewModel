@@ -2,12 +2,15 @@ package com.reactiveviewmodel.core;
 
 import junit.framework.TestCase;
 
+import static com.reactiveviewmodel.core.Binding.oneWayBind;
+import static com.reactiveviewmodel.core.Binding.twoWayBind;
+
 public class BindingTest extends TestCase {
   public void testTwoWayBinding() {
-    ReactiveProperty<String> name = ReactiveProperty.create("A");
-    ReactiveProperty<String> text = ReactiveProperty.create();
+    ReactiveProperty<String> name = new ReactiveProperty<>("A");
+    ReactiveProperty<String> text = new ReactiveProperty<>();
 
-    Binding.twoWayBind(name, text);
+    twoWayBind(name, text);
     assertEquals("A", text.get());
 
     name.set("B");
@@ -18,10 +21,10 @@ public class BindingTest extends TestCase {
   }
 
   public void testOneWayBinding() {
-    ReactiveProperty<String> name = ReactiveProperty.create("A");
-    ReactiveProperty<String> text = ReactiveProperty.create();
+    ReactiveProperty<String> name = new ReactiveProperty<>("A");
+    ReactiveProperty<String> text = new ReactiveProperty<>();
 
-    Binding.oneWayBind(name, text);
+    oneWayBind(name, text);
     assertEquals("A", text.get());
 
     name.set("B");

@@ -14,16 +14,6 @@ public class ReactiveProperty<T> implements Action1<T> {
     this.value = defaultValue;
   }
 
-  @Deprecated
-  public static <T> ReactiveProperty<T> create() {
-    return new ReactiveProperty<T>();
-  }
-
-  @Deprecated
-  public static <T> ReactiveProperty<T> create(T defaultValue) {
-    return new ReactiveProperty<>(defaultValue);
-  }
-
   public T get() {
     return value;
   }

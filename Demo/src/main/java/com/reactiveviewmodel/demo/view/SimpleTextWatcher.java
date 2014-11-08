@@ -3,7 +3,7 @@ package com.reactiveviewmodel.demo.view;
 import android.text.Editable;
 import android.text.TextWatcher;
 
-class SimpleTextWatcher implements TextWatcher {
+public class SimpleTextWatcher implements TextWatcher {
   @Override
   public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 

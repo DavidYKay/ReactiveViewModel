@@ -5,8 +5,8 @@ import junit.framework.TestCase;
 import rx.functions.Action1;
 
 public class ReactivePropertyTest extends TestCase {
-  public void testSomething() {
-    ReactiveProperty<String> name = ReactiveProperty.create("A");
+  public void testStringProperty() {
+    ReactiveProperty<String> name = new ReactiveProperty<>("A");
     assertEquals("A", name.get());
 
     name.whenChanged().subscribe(new Action1<String>() {
