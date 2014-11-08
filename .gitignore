@@ -14,5 +14,6 @@ local.properties
 .DS_Store
 /build
 gradle/
+gradle.properties
 gradlew
 gradlew.bat
