@@ -8,16 +8,18 @@ public class ReactiveProperty<T> implements Action1<T> {
   private T value;
   private PublishSubject<T> whenAssigned = PublishSubject.create();
 
-  protected ReactiveProperty() { }
+  public ReactiveProperty() { }
 
-  protected ReactiveProperty(T defaultValue) {
+  public ReactiveProperty(T defaultValue) {
     this.value = defaultValue;
   }
 
+  @Deprecated
   public static <T> ReactiveProperty<T> create() {
     return new ReactiveProperty<T>();
   }
 
+  @Deprecated
   public static <T> ReactiveProperty<T> create(T defaultValue) {
     return new ReactiveProperty<>(defaultValue);
   }
@@ -32,7 +34,8 @@ public class ReactiveProperty<T> implements Action1<T> {
   }
 
   public Observable<T> whenChanged() {
-    return whenAssigned.distinctUntilChanged();
+    // FIXME: distinctUntilChanged() doesn't work as expected.
+    return whenAssigned;
   }
 
   @Override

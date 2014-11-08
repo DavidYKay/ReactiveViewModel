@@ -26,6 +26,13 @@ public class Binding<S, T> implements Subscription {
     init();
   }
 
+  public static <S, T> Subscription twoWayBind(ReactiveProperty<S> source,
+                                               ReactiveProperty<T> target,
+                                               Func1<S, T> sourceToTargetConverter,
+                                               Func1<T, S> targetToSourceConverter) {
+    return new Binding<>(source, target, sourceToTargetConverter, targetToSourceConverter);
+  }
+
   public static <T> Subscription twoWayBind(ReactiveProperty<T> source, ReactiveProperty<T> target) {
     SameTypeConverter<T> converter = new SameTypeConverter<>();
     return new Binding<>(source, target, converter, converter);
