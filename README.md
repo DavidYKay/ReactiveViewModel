@@ -1,4 +1,2 @@
 ReactiveViewModel
 =================
-
-MVVM + RxJava

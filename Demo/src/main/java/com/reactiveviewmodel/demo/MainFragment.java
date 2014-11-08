@@ -1,4 +1,4 @@
-package com.reactiveviewmodel.core;
+package com.reactiveviewmodel.demo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
