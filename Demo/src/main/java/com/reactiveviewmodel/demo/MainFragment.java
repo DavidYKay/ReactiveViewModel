@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.reactiveviewmodel.demo.converter.CharSequenceToStringConverter;
+import com.reactiveviewmodel.demo.converter.StringToCharSequenceConverter;
 import com.reactiveviewmodel.demo.view.ReactiveEditText;
 import com.reactiveviewmodel.demo.view.ViewActions;
 import com.reactiveviewmodel.demo.viewmodel.MainViewModel;
 
-import rx.functions.Func1;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.reactiveviewmodel.core.Binding.twoWayBind;
@@ -43,12 +43,7 @@ public class MainFragment extends Fragment {
         twoWayBind(
             mainViewModel.query,
             queryEditText.text,
-            new Func1<String, CharSequence>() {
-              @Override
-              public CharSequence call(String s) {
-                return s;
-              }
-            },
+            new StringToCharSequenceConverter(),
             new CharSequenceToStringConverter())
     );
   }
