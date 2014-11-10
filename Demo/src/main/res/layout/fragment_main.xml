@@ -8,11 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.reactiveviewmodel.demo.MainFragment">
 
-  <view
+  <EditText
       android:id="@+id/queryEditText"
-      class="com.reactiveviewmodel.demo.view.ReactiveEditText"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="wrap_content"
+      android:inputType="text"
+      tools:text="Type something here" />
 
   <TextView
       android:id="@+id/queryTextView"

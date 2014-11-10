@@ -1,4 +1,4 @@
-package com.reactiveviewmodel.demo.view;
+package com.reactiveviewmodel.core.view;
 
 import android.text.Editable;
 import android.text.TextWatcher;

@@ -4,9 +4,9 @@ import rx.Observable;
 import rx.functions.Action1;
 import rx.subjects.PublishSubject;
 
-public class ReactiveProperty<T> implements Action1<T> {
+public class ReactiveProperty<T> implements Action1<T>, ObservableProperty<T> {
+  protected final PublishSubject<T> whenAssigned = PublishSubject.create();
   private T value;
-  private PublishSubject<T> whenAssigned = PublishSubject.create();
 
   public ReactiveProperty() { }
 
@@ -14,15 +14,18 @@ public class ReactiveProperty<T> implements Action1<T> {
     this.value = defaultValue;
   }
 
+  @Override
   public T get() {
     return value;
   }
 
+  @Override
   public void set(T value) {
     this.value = value;
     whenAssigned.onNext(value);
   }
 
+  @Override
   public Observable<T> whenChanged() {
     // FIXME: distinctUntilChanged() doesn't work as expected.
     return whenAssigned;

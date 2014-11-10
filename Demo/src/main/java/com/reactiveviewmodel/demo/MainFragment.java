@@ -6,11 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.reactiveviewmodel.core.view.EditableTextProperty;
 import com.reactiveviewmodel.demo.converter.CharSequenceToStringConverter;
 import com.reactiveviewmodel.demo.converter.StringToCharSequenceConverter;
-import com.reactiveviewmodel.demo.view.ReactiveEditText;
 import com.reactiveviewmodel.demo.view.ViewActions;
 import com.reactiveviewmodel.demo.viewmodel.MainViewModel;
 
@@ -30,7 +31,8 @@ public class MainFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    ReactiveEditText queryEditText = (ReactiveEditText) view.findViewById(R.id.queryEditText);
+    EditText queryEditText = (EditText) view.findViewById(R.id.queryEditText);
+    EditableTextProperty queryText = new EditableTextProperty(queryEditText);
     TextView queryTextView = (TextView) view.findViewById(R.id.queryTextView);
 
     viewSubscription.add(
@@ -42,7 +44,7 @@ public class MainFragment extends Fragment {
     viewSubscription.add(
         twoWayBind(
             mainViewModel.query,
-            queryEditText.text,
+            queryText,
             new StringToCharSequenceConverter(),
             new CharSequenceToStringConverter())
     );
